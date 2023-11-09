@@ -1,3 +1,4 @@
+-- Active: 1699473969193@@localhost@3306@5to_Espuchifai
 -- 1) Realizar los SP para dar de alta todas las entidades menos las tablas Cliente y Reproducción. En la tabla reproducción el SP se debe llamar ‘Reproducir’.
 delimiter $$
 Drop procedure if exists altaBandas	$$

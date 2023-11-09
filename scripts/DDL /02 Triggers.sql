@@ -1,12 +1,13 @@
+-- Active: 1699473969193@@localhost@3306@5to_Espuchifai
 -- 1) Cada vez que se inserta una reproducción, se incrementa el contador de reproducciones de la canción en uno.
 Delimiter $$
 Drop Trigger if exists IncrementarReproduccionesCancion $$
-Create Trigger IncrementarReproduccionesCancion after Insert on Reproducciones
+Create Trigger IncrementarReproduccionesCancion after Insert on Canciones
 For each row
 Begin
-	update Reproducciones
+	update Canciones
 	set Reproducciones = Reproducciones + 1
-	where cancion = new.idcancion;
+	where idcancion = new.idcancion;
 END $$
 
 
@@ -16,7 +17,7 @@ Drop Trigger if exists ReproduccionesAlbum $$
 Create Trigger ReproduccionesAlbum before update on Canciones
 For each row
 Begin
-if(old.Reproducciones <= new.Reproducciones)then
+if(Reproducciones <= Reproducciones)then
 	update Albumes
 	set Reproducciones = Reproducciones + 1
 	where id_album = new.id_album;

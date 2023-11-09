@@ -1,3 +1,4 @@
+-- Active: 1699473969193@@localhost@3306@5to_Espuchifai
 DROP DATABASE IF EXISTS 5to_Espuchifai;
 CREATE DATABASE 5to_Espuchifai;
 USE 5to_Espuchifai;
@@ -14,7 +15,7 @@ id_album int not null,
 nombre varchar(45) not null,
 lazamiento date not null,
 id_banda int not null,
-Reproducciones int not null,
+Reproduccion int not null,
 FULLTEXT (nombre),
 CONSTRAINT PK_Albumes PRIMARY KEY (id_album),
 CONSTRAINT UQ_Abumes_nombre UNIQUE (nombre),
@@ -26,7 +27,7 @@ idcancion int not null,
 nombre varchar(45) not null,
 numero int not null,
 id_album int not null,
-Reproducciones int not null,
+Reproduccion int not null,
 FULLTEXT (nombre),
 CONSTRAINT PK_Canciones PRIMARY KEY (idcancion),
 CONSTRAINT FK_album FOREIGN KEY (id_album)
@@ -45,7 +46,7 @@ momento_reproduccion time not null,
 idcancion int not null,
 cliente int not null,
 id_album int not null,
-Reproducciones int not null,
+Reproduccion int not null,
 CONSTRAINT PK_Reproducciones PRIMARY KEY (momento_reproduccion, idcancion, cliente),
 CONSTRAINT FK_Reprudcciones FOREIGN KEY (idcancion)
 REFERENCES Canciones (idcancion),
