@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS 5to_Espuchifai;
 CREATE DATABASE 5to_Espuchifai;
 USE 5to_Espuchifai;
 CREATE TABLE Bandas(
-id_banda int not null,
+id_banda int not null AUTO_INCREMENT,
 nombre varchar(45) not null,
 anio year not null,
 FULLTEXT (nombre),
@@ -11,7 +11,7 @@ CONSTRAINT PK_Bandas PRIMARY KEY (id_banda),
 CONSTRAINT UQ_Banda_nombre UNIQUE (nombre)
 );
 CREATE TABLE Albumes(
-id_album int not null,
+id_album int not null AUTO_INCREMENT,
 nombre varchar(45) not null,
 lazamiento date not null,
 id_banda int not null,
@@ -23,7 +23,7 @@ CONSTRAINT FK_Albumes FOREIGN KEY (id_banda)
 REFERENCES Bandas (id_banda)
 );
 CREATE TABLE Canciones(
-idcancion int not null,
+idcancion int not null AUTO_INCREMENT,
 nombre varchar(45) not null,
 numero int not null,
 id_album int not null,

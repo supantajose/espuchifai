@@ -2,28 +2,34 @@
 -- 1) Realizar los SP para dar de alta todas las entidades menos las tablas Cliente y Reproducción. En la tabla reproducción el SP se debe llamar ‘Reproducir’.
 delimiter $$
 Drop procedure if exists altaBandas	$$
-Create procedure altaBandas (unid_banda int, unnombre varchar(45), unanio year)
+Create procedure altaBandas (OUT unid_banda int, unnombre varchar(45), unanio year)
 begin
 	insert into Bandas (id_banda, nombre, anio)
 		values(unid_banda, unnombre, unanio );
+
+	SET id_banda = LAST_INSERT_ID();
 end $$
 
 
 delimiter $$
 Drop procedure if exists altaAlbumes $$
-Create procedure altaAlbumes (unid_album int, unnombre varchar(45), unlanzamiento date, unid_banda int, unReproduccion int)
+Create procedure altaAlbumes (OUT unid_album int, unnombre varchar(45), unlanzamiento date, unid_banda int, unReproduccion int)
 begin
 	insert into Albumes (id_album, nombre, lanzamiento, id_banda, Reproduccion)
 		values(unid_album, unnombre, unlanzamiento, unid_banda, unReproduccion);
+	
+	SET id_album = LAST_INSERT_ID();
 end $$
 
 
 delimiter $$
 Drop procedure if exists altaCanciones $$
-Create procedure altaCanciones (unidcancion int, unnombre varchar (45), unnumero int, unid_album int, unReproduccion int)
+Create procedure altaCanciones (OUT unidcancion int, unnombre varchar (45), unnumero int, unid_album int, unReproduccion int)
 begin
 	insert into Canciones (idcancion, nombre, numero, id_album, Reproduccion)
 		values(unidcancion, unnombre, unnumero, unid_album, unReproduccion);
+	
+	SET idcancion = LAST_INSERT_ID();
 end $$
 
 

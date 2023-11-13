@@ -73,7 +73,10 @@ public class AdoDapper : IAdo
 
     void IAdo.altaBandas(Banda banda)
     {
-        throw new NotImplementedException();
+        var parametros = new DynamicParameters();
+        parametros.Add("unid_banda", banda.id_banda);
+        parametros.Add("unnombre", banda.Nombre);
+        parametros.Add("unanio", banda.anio);
     }
 
     List<Banda> IAdo.ObtenerBandas()
@@ -88,7 +91,12 @@ public class AdoDapper : IAdo
 
     void IAdo.altaAlbumes(Albumes albumes)
     {
-        throw new NotImplementedException();
+        var parametros = new DynamicParameters();
+        parametros.Add("unid_album", albumes.id_album);
+        parametros.Add("unnombre", albumes.Nombre);
+        parametros.Add("unlanzamiento", albumes.Lanzamiento);
+        parametros.Add("unid_banda", albumes.id_Banda);
+        parametros.Add("unReproduccion", direction: ParameterDirection.Output);
     }
 
     List<Albumes> IAdo.ObtenerAlbumes()
@@ -103,7 +111,12 @@ public class AdoDapper : IAdo
 
     void IAdo.altaCanciones(Canciones canciones)
     {
-        throw new NotImplementedException();
+        var parametros = new DynamicParameters();
+        parametros.Add("unidcancion", canciones.idcancion);
+        parametros.Add("unnombre", canciones.Nombre);
+        parametros.Add("unnumero", canciones.numero);
+        parametros.Add("unid_album", direction: ParameterDirection.Output);
+        parametros.Add("unReproduccion", direction: ParameterDirection.Output);        throw new NotImplementedException();
     }
 
     List<Canciones> IAdo.ObtenerCanciones()
