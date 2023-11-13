@@ -11,19 +11,19 @@ end $$
 
 delimiter $$
 Drop procedure if exists altaAlbumes $$
-Create procedure altaAlbumes (unid_album int, unnombre varchar(45), unlanzamiento date, unid_banda int)
+Create procedure altaAlbumes (unid_album int, unnombre varchar(45), unlanzamiento date, unid_banda int, unReproduccion int)
 begin
-	insert into Albumes (id_album, nombre, lanzamiento, id_banda)
-		values(unid_album, unnombre, unlanzamiento, unid_banda);
+	insert into Albumes (id_album, nombre, lanzamiento, id_banda, Reproduccion)
+		values(unid_album, unnombre, unlanzamiento, unid_banda, unReproduccion);
 end $$
 
 
 delimiter $$
 Drop procedure if exists altaCanciones $$
-Create procedure altaCanciones (unidcancion int, unnombre varchar (45), unnumero int, unid_album int)
+Create procedure altaCanciones (unidcancion int, unnombre varchar (45), unnumero int, unid_album int, unReproduccion int)
 begin
-	insert into Canciones (idcancion, nombre, numero, id_album)
-		values(unidcancion, unnombre, unnumero, unid_album);
+	insert into Canciones (idcancion, nombre, numero, id_album, Reproduccion)
+		values(unidcancion, unnombre, unnumero, unid_album, unReproduccion);
 end $$
 
 

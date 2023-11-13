@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Espuchi.Core", "Espuchi.Core\Espuchi.Core.csproj", "{0308F39B-493A-46B1-83CA-1931622F4A99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Espuchi.AdoDap", "Espuchi.AdoDap\Espuchi.AdoDap.csproj", "{8A11DD5B-A372-45EC-88F9-5FC977CACEC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{0308F39B-493A-46B1-83CA-1931622F4A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0308F39B-493A-46B1-83CA-1931622F4A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0308F39B-493A-46B1-83CA-1931622F4A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A11DD5B-A372-45EC-88F9-5FC977CACEC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A11DD5B-A372-45EC-88F9-5FC977CACEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A11DD5B-A372-45EC-88F9-5FC977CACEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A11DD5B-A372-45EC-88F9-5FC977CACEC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
