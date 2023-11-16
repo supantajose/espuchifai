@@ -118,7 +118,7 @@ public class AdoDapper : IAdo
         parametros.Add("unReproduccion", direction: ParameterDirection.Output);
     }
     List<Canciones> IAdo.ObtenerCanciones()
-{}
+
     List<Canciones> IAdo.ObtenerCanciones()
         => _conexion.Query<Canciones>(_queryCancion).ToList();
 
@@ -126,5 +126,5 @@ public class AdoDapper : IAdo
     {
         
     }
-}
+
 
