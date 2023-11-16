@@ -7,10 +7,11 @@ namespace Espuchi.AdoDap;
 public class AdoDapper : IAdo
 {
     private readonly IDbConnection _conexion;
-        public AdoDapper(IDbConnection conexion)=> this._conexion = conexion;
+    private string _queryBandas;
+
+    public AdoDapper(IDbConnection conexion)=> this._conexion = conexion;
         
         public AdoDapper(string cadena) => _conexion = new MySqlConnection(cadena);
-
 
 
     public void altaBanda(Banda banda)
@@ -42,9 +43,8 @@ public class AdoDapper : IAdo
     }
 
     public List<Albumes> ObtenerAlbumes()
-    {
-        throw new NotImplementedException();
-    }
+        => _conexion.Query<Albumes>().ToList();
+
 
     public Albumes? ObtenerAlbumes(int id_album, string nombre, DateTime lanzamiento, int id_banda, int Reproduccion)
     {
@@ -80,13 +80,12 @@ public class AdoDapper : IAdo
     }
 
     List<Banda> IAdo.ObtenerBandas()
-    {
-        throw new NotImplementedException();
+        => _conexion.Query<Banda>(_queryBandas).ToList();
     }
 
     Banda? IAdo.ObtenerBanda(int id_banda, string nombre, ushort anio)
     {
-        throw new NotImplementedException();
+
     }
 
     void IAdo.altaAlbumes(Albumes albumes)
@@ -116,16 +115,16 @@ public class AdoDapper : IAdo
         parametros.Add("unnombre", canciones.Nombre);
         parametros.Add("unnumero", canciones.numero);
         parametros.Add("unid_album", direction: ParameterDirection.Output);
-        parametros.Add("unReproduccion", direction: ParameterDirection.Output);        throw new NotImplementedException();
+        parametros.Add("unReproduccion", direction: ParameterDirection.Output);
     }
-
     List<Canciones> IAdo.ObtenerCanciones()
-    {
-        throw new NotImplementedException();
-    }
+{}
+    List<Canciones> IAdo.ObtenerCanciones()
+        => _conexion.Query<Canciones>(_queryCancion).ToList();
 
     Canciones? IAdo.ObtenerCanciones(int idcancion, string nombre, int numero, int id_album, int Reproduccion)
     {
-        throw new NotImplementedException();
+        
     }
 }
+

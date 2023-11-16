@@ -5,4 +5,5 @@ public class Banda
     public required string Nombre {get; set;} 
     public ushort anio {get; set;}
     public required List<Albumes> Albumes {get; set;}
+    
 }
