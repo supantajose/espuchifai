@@ -12,7 +12,7 @@ public class AdoDapper : IAdo
     
     public AdoDapper(string cadena) => _conexion = new MySqlConnection(cadena);
 
-
+#region Banda
     public void altaBanda(Banda banda)
     {
         var parametros = new DynamicParameters();
@@ -20,7 +20,12 @@ public class AdoDapper : IAdo
         parametros.Add("unnombre", banda.Nombre);
         parametros.Add("unanio", banda.anio);
     }
+            _conexion.Execute("altaBanda", parametros, commandType: commandType.StoredProcedure);
+            banda.id_Banda=parametros.Get<int>("@unid_Banda");
 
+
+#endregion
+#region Canciones
     public void altaCanciones(Canciones canciones)
     {
         var parametros = new DynamicParameters();
@@ -52,7 +57,7 @@ public class AdoDapper : IAdo
 
     public Banda? ObtenerBanda(int id_banda, string nombre, ushort anio)
     
-    => _conexion.QueryFirstOrDefault<Banda>(_queryBanda, new { unid_banda = id_banda, unnombre = nombre, unanio = anio });
+    => _conexion.QueryFirstOrDefault<Banda>(_queryBanda, new{ unid_banda = id_banda, unnombre = nombre, unanio = anio });
 
     public List<Banda> ObtenerBandas()
     {
@@ -86,8 +91,6 @@ public class AdoDapper : IAdo
     {
 
     }
-
-
 
     void IAdo.altaAlbumes(Albumes albumes)
     {
@@ -132,5 +135,3 @@ public class AdoDapper : IAdo
     
     }
 }
-
-
