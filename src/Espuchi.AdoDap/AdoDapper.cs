@@ -7,11 +7,10 @@ namespace Espuchi.AdoDap;
 public class AdoDapper : IAdo
 {
     private readonly IDbConnection _conexion;
-    private string _queryBandas;
 
     public AdoDapper(IDbConnection conexion)=> this._conexion = conexion;
-        
-        public AdoDapper(string cadena) => _conexion = new MySqlConnection(cadena);
+    
+    public AdoDapper(string cadena) => _conexion = new MySqlConnection(cadena);
 
 
     public void altaBanda(Banda banda)
@@ -43,8 +42,8 @@ public class AdoDapper : IAdo
     }
 
     public List<Albumes> ObtenerAlbumes()
-        => _conexion.Query<Albumes>().ToList();
-
+    
+        => _conexion.Query<Albumes>(_queryAlbumes).ToList();
 
     public Albumes? ObtenerAlbumes(int id_album, string nombre, DateTime lanzamiento, int id_banda, int Reproduccion)
     {
@@ -52,9 +51,8 @@ public class AdoDapper : IAdo
     }
 
     public Banda? ObtenerBanda(int id_banda, string nombre, ushort anio)
-    {
-        throw new NotImplementedException();
-    }
+    
+    => _conexion.QueryFirstOrDefault<Banda>(_queryBanda, new { unid_banda = id_banda, unnombre = nombre, unanio = anio });
 
     public List<Banda> ObtenerBandas()
     {
@@ -80,13 +78,16 @@ public class AdoDapper : IAdo
     }
 
     List<Banda> IAdo.ObtenerBandas()
-        => _conexion.Query<Banda>(_queryBandas).ToList();
+    {
+
     }
 
     Banda? IAdo.ObtenerBanda(int id_banda, string nombre, ushort anio)
     {
 
     }
+
+
 
     void IAdo.altaAlbumes(Albumes albumes)
     {
@@ -118,13 +119,18 @@ public class AdoDapper : IAdo
         parametros.Add("unReproduccion", direction: ParameterDirection.Output);
     }
     List<Canciones> IAdo.ObtenerCanciones()
-
-    List<Canciones> IAdo.ObtenerCanciones()
-        => _conexion.Query<Canciones>(_queryCancion).ToList();
-
-    Canciones? IAdo.ObtenerCanciones(int idcancion, string nombre, int numero, int id_album, int Reproduccion)
     {
-        
+
     }
+    List<Canciones> IAdo.ObtenerCanciones()
+    {
+
+    }
+
+    Canciones? IAdo.ObtenerCanciones(int idcancion, string nombre,int numero, int id_album, int Reproduccion)
+    {
+    
+    }
+}
 
 
