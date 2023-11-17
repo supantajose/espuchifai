@@ -1,6 +1,7 @@
 -- Active: 1699473969193@@localhost@3306@5to_Espuchifai
 -- 1) Cada vez que se inserta una reproducción, se incrementa el contador de reproducciones de la canción en uno.
 Delimiter $$
+SELECT 'Creando Triggers' Estado $$
 Drop Trigger if exists IncrementarReproduccionesCancion $$
 Create Trigger IncrementarReproduccionesCancion after Insert on Canciones
 For each row
