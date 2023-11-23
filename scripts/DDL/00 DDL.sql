@@ -1,5 +1,6 @@
--- Active: 1699473969193@@localhost@3306@5to_Espuchifai
+
 DROP DATABASE IF EXISTS 5to_Espuchifai;
+SELECT 'Creando BD' Estado;
 CREATE DATABASE 5to_Espuchifai;
 USE 5to_Espuchifai;
 CREATE TABLE Bandas(
@@ -48,7 +49,7 @@ cliente int not null,
 id_album int not null,
 Reproduccion int not null,
 CONSTRAINT PK_Reproducciones PRIMARY KEY (momento_reproduccion, idcancion, cliente),
-CONSTRAINT FK_Reprudcciones FOREIGN KEY (idcancion)
+CONSTRAINT FK_Repruducciones FOREIGN KEY (idcancion)
 REFERENCES Canciones (idcancion),
 CONSTRAINT FK_Reproducciones FOREIGN KEY (cliente)
 REFERENCES Clientes (id_cliente)

@@ -1,4 +1,5 @@
--- Active: 1699473969193@@localhost@3306@5to_Espuchifai
+DELIMITER ;
+SELECT 'Inserts' Estado ;
 INSERT into Clientes(id_Cliente, nombre, apellido, email, contrasena)
 		values(1, "Vanina", "Condorpocco","vanyabrilconblas@gmail.com",'root');
 insert into Bandas(id_banda, nombre, anio)
