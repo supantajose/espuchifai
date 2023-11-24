@@ -1,20 +1,21 @@
-using System.IO.Pipes;
-
 namespace Espuchi.Core;
 
 public interface IAdo
 {
-    void altaBandas (Banda banda);
-    List<Banda> ObtenerBandas();
-    Banda? ObtenerBanda(int id_banda);
+    public void AltaBanda(Banda banda);
+    public List<Banda> ObtenerBandas();
 
 
-    void altaAlbumes (Albumes albumes);
-    List<Albumes> ObtenerAlbumes();
-    Albumes? ObtenerAlbumes(int id_album);
+
+    public void AltaAlbum(Albumes albumes);
+    public List<Albumes> ObtenerAlbumes();
+    
 
 
-    void altaCanciones (Canciones canciones);
-    List<Canciones> ObtenerCanciones();
-    Canciones? ObtenerCanciones(int idcancion); 
+    public void AltaCancion(Canciones canciones);
+    public List<Canciones> ObtenerCanciones();
+    
+
+    public void AltaCliente(Clientes cliente);
+    public List<Clientes> ObtenerClientes();
 }
