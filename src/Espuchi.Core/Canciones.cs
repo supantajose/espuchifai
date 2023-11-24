@@ -9,3 +9,5 @@ public class Canciones
     public int Reproduccion {get;set;}
     public required List<Reproducciones> Reproducciones {get; set;}
 }
+
+

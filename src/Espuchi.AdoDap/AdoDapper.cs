@@ -1,6 +1,7 @@
 ﻿using System.Data;
+
 using Espuchi.Core;
-using Dapper;   
+using Dapper;
 using MySqlConnector;
 
 namespace Espuchi.AdoDap;
@@ -8,12 +9,12 @@ public class AdoDapper : IAdo
 {
     private readonly IDbConnection _conexion;
 
-    public AdoDapper(IDbConnection conexion)=> this._conexion = conexion;
-    
+    public AdoDapper(IDbConnection conexion) => this._conexion = conexion;
+
     public AdoDapper(string cadena) => _conexion = new MySqlConnection(cadena);
 
 
-#region Banda
+    #region Banda
     public void altaBanda(Banda banda)
     {
         var parametros = new DynamicParameters();
@@ -21,7 +22,7 @@ public class AdoDapper : IAdo
         parametros.Add("unnombre", banda.Nombre);
         parametros.Add("unanio", banda.anio);
         _conexion.Execute("altaBanda", parametros, commandType: CommandType.StoredProcedure);
-        banda.id_banda=parametros.Get<sbyte>("unid_banda");
+        banda.id_banda = parametros.Get<sbyte>("unid_banda");
     }
     private static readonly string _queryBanda
     = @"SELECT id_banda, Nombre
@@ -30,31 +31,32 @@ public class AdoDapper : IAdo
         => _conexion.Query<Banda>(_queryBanda).ToList();
 
     #endregion
-#region Canciones
-    public void altaCanciones(Canciones canciones)
+    #region Canciones
+    public void AltaCancion(Canciones canciones)
     {
         var parametros = new DynamicParameters();
-        parametros.Add("unidcancion", canciones.idcancion);
+        parametros.Add("unidcancion", direction: ParameterDirection.Output);
         parametros.Add("unnombre", canciones.Nombre);
         parametros.Add("unnumero", canciones.numero);
-        parametros.Add("unid_album", direction: ParameterDirection.Output);
-        parametros.Add("unReproduccion", direction: ParameterDirection.Output);
+        parametros.Add("unid_album", canciones.id_album);
+        parametros.Add("unReproduccion", canciones.Reproduccion);
         _conexion.Execute("altaCanciones", parametros, commandType: CommandType.StoredProcedure);
 
-        canciones.idcancion=parametros.Get<sbyte>(@"unidcancion");
+        canciones.idcancion = parametros.Get<sbyte>(@"unidcancion");
+
     }
 
-        private static readonly string _queryCanciones
-        = @"SELECT idcancion, Nombre
+    private static readonly string _queryCanciones
+    = @"SELECT idcancion, Nombre
             FROM Canciones";
     public List<Canciones> ObtenerCanciones()
     {
         return _conexion.Query<Canciones>(_queryCanciones).ToList();
     }
     #endregion
-#region Albumes
+    #region Albumes
 
-    public void altaAlbumes(Albumes albumes)
+    public void AltaAlbum(Albumes albumes)
     {
         var parametros = new DynamicParameters();
         parametros.Add("unid_album", albumes.id_album);
@@ -63,9 +65,9 @@ public class AdoDapper : IAdo
         parametros.Add("unid_banda", albumes.id_Banda);
         parametros.Add("unReproduccion", direction: ParameterDirection.Output);
 
-        _conexion.Execute("altaAlbumes",parametros,commandType: CommandType.StoredProcedure);
+        _conexion.Execute("altaAlbumes", parametros, commandType: CommandType.StoredProcedure);
 
-            albumes.id_album=parametros.Get<sbyte>("unid_album");
+        albumes.id_album = parametros.Get<sbyte>("unid_album");
     }
 
     private static readonly string _queryAlbumes
@@ -84,15 +86,10 @@ public class AdoDapper : IAdo
     }
 
     public Banda? ObtenerBanda(int id_banda)
-    
-    => _conexion.QueryFirstOrDefault<Banda>(_queryBanda, new { unid_banda = id_banda,});
 
-    public Canciones? obtenerCanciones(int idcancion)
-    {
-        throw new NotImplementedException();
-    }
+    => _conexion.QueryFirstOrDefault<Banda>(_queryBanda, new { unid_banda = id_banda, });
 
-    void IAdo.altaBandas(Banda banda)
+    void IAdo.AltaBanda(Banda banda)
     {
         var parametros = new DynamicParameters();
         parametros.Add("unid_banda", banda.id_banda);
@@ -109,8 +106,30 @@ public class AdoDapper : IAdo
         throw new NotImplementedException();
     }
 
+    #region Canciones
+    private static readonly string _queryCancion
+    = @"SELECT *
+        FROM Canciones
+        WHERE cancion = @unidcancion
+        AND   nombre = SHA2(@unNombre,)
+        LIMIT 1";
+
+    private static readonly string _queryAltacancion
+    = @"INSERT INTO Canciones VALUES(@idcancion, @nombre, numero, @id_album, Reproduccion)";
+    private readonly string _querycanciones;
+
+    public void canciones(Canciones canciones, string nombre)
+    => _conexion.Execute(
+        _queryAltacancion,
+        new
+        {
+            nombre = canciones.Nombre,
+            numero = canciones.numero,
+            id_album = canciones.id_album,
+            Reproducciones = canciones.Reproduccion
+        }
+    );
     Canciones? IAdo.ObtenerCanciones(int idcancion)
-    {
-    
-    }
+    => _conexion.QueryFirstOrDefault<Canciones>(_querycanciones, new { unidcancion = idcancion, unnombre = nombre });
+    #endregion
 }
