@@ -26,7 +26,7 @@ public class AdoDapper : IAdo
         banda.id_banda = parametros.Get<int>("@unid_banda");
     }
     private static readonly string _queryBanda
-    = @"SELECT id_banda, nombre
+    = @"SELECT id_banda, nombre, anio
         FROM Bandas";
     public List<Banda> ObtenerBandas()
         => _conexion.Query<Banda>(_queryBanda).ToList();
