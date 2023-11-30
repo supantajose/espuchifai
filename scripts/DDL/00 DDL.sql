@@ -32,7 +32,7 @@ id_album int not null,
 Reproduccion int not null,
 FULLTEXT (nombre),
 CONSTRAINT PK_Canciones PRIMARY KEY (idcancion),
-CONSTRAINT FK_album FOREIGN KEY (id_album)
+CONSTRAINT FK_Canciones FOREIGN KEY (id_album)
 REFERENCES Albumes (id_album)
 );
 CREATE TABLE Clientes(
@@ -51,5 +51,6 @@ id_album int not null,
 Reproduccion int not null,
 CONSTRAINT PK_Reproducciones PRIMARY KEY (momento_reproduccion, idcancion, cliente),
 CONSTRAINT FK_Repruducciones FOREIGN KEY (idcancion) REFERENCES Canciones (idcancion),
-CONSTRAINT FK_Reproducciones FOREIGN KEY (cliente) REFERENCES Clientes (id_cliente)
+CONSTRAINT FK_Clientes FOREIGN KEY (cliente) REFERENCES Clientes (id_cliente),
+CONSTRAINT FK_AlbumesReproducciones FOREIGN KEY (id_album) REFERENCES Albumes (id_album)
 );

@@ -91,6 +91,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unnombre", cliente.Nombre);
         parametros.Add("@unapellido", cliente.Apellido);
         parametros.Add("@unemail", cliente.email);
+        parametros.Add("@unacantrasena",cliente.contrasena);
         //falta contraseña preguntar como hacerlo en alta
 
         _conexion.Execute("registrarCliente", parametros, commandType: CommandType.StoredProcedure);
