@@ -3,11 +3,11 @@
 Delimiter $$
 SELECT 'Creando Triggers' Estado $$
 Drop Trigger if exists IncrementarReproduccionesCancion $$
-Create Trigger IncrementarReproduccionesCancion after Insert on Canciones
+Create Trigger IncrementarReproduccionesCancion after Insert on Reproducciones
 For each row
 Begin
-	update Canciones
-	set Reproducciones = Reproducciones + 1
+	update Reproducciones
+	set Reproduccion = Reproduccion + 1
 	where idcancion = new.idcancion;
 END $$
 

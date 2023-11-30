@@ -47,10 +47,7 @@ CREATE TABLE Reproducciones(
 momento_reproduccion time not null,
 idcancion int not null,
 cliente int not null,
-id_album int not null,
-Reproduccion int not null,
 CONSTRAINT PK_Reproducciones PRIMARY KEY (momento_reproduccion, idcancion, cliente),
 CONSTRAINT FK_Repruducciones FOREIGN KEY (idcancion) REFERENCES Canciones (idcancion),
 CONSTRAINT FK_Clientes FOREIGN KEY (cliente) REFERENCES Clientes (id_cliente),
-CONSTRAINT FK_AlbumesReproducciones FOREIGN KEY (id_album) REFERENCES Albumes (id_album)
 );

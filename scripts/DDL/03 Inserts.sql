@@ -10,5 +10,5 @@ INSERT into Albumes(id_album, nombre, lazamiento, id_banda, Reproduccion)
 
 INSERT into Canciones(idcancion, nombre, numero, id_album, Reproduccion)
 		values(1, "Te bote", 1, 1, 1);
-INSERT into Reproducciones(momento_reproduccion, idcancion, cliente, id_album, Reproduccion)
-		values(now(), 1, 1, 1, 1);
+INSERT into Reproducciones(momento_reproduccion, idcancion, cliente)
+		values(now(), 1, 1);
