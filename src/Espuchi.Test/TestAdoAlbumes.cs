@@ -15,7 +15,7 @@ public class TestAdoAlbumes : TestAdo
         var newAlbumes = new Albumes()
         {
             Nombre=  "Bad",
-            Lanzamiento= new DateTime(2022),
+            Lanzamiento= new DateTime(2022, 09, 4),
             Banda= Drako,
             Reproduccion = 1,
             Canciones = new List<Canciones>()

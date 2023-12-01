@@ -29,7 +29,10 @@ public class AdoDapper : IAdo
     = @"SELECT id_banda, nombre, anio
         FROM Bandas";
     public List<Banda> ObtenerBandas()
-        => _conexion.Query<Banda>(_queryBanda).ToList();
+    {
+        return _conexion.Query<Banda>(_queryBanda).ToList();
+    }
+        
 
     #endregion
     #region Canciones

@@ -7,5 +7,4 @@ public class Clientes
     public required string Apellido {get; set;}
     public required string email {get; set;}
     public required string contrasena {get;set;}
-    public required List<Reproducciones> Reproducciones {get; set;}
 }
