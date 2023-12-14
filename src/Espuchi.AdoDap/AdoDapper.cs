@@ -98,6 +98,7 @@ public class AdoDapper : IAdo
 
         _conexion.Execute("registrarCliente", parametros, commandType: CommandType.StoredProcedure);
         cliente.id_cliente = parametros.Get<int>("@unid_Cliente");
+
     }
     private static readonly string _queryClientes
     = @"SELECT id_cliente, nombre, apellido
@@ -106,5 +107,15 @@ public class AdoDapper : IAdo
     {
         return _conexion.Query<Clientes>(_queryClientes).ToList();
     }
-    #endregion    
+
+    public Clientes? ClienteporContrasena(string email, string contrasena)
+    {
+        var parametros= new DynamicParameters();
+        parametros.Add("@unemail", email);
+        parametros.Add("@uncontrasena",contrasena);
+
+        return _conexion.QueryFirstOrDefault<Clientes>("ClientesPoremailcontrasena", parametros,
+                        commandType: CommandType.StoredProcedure);
+    }
+    #endregion
 }

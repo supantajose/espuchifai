@@ -29,3 +29,15 @@ Begin
 	where id_album = new.id_album;
 	end if;
 END $$
+
+
+-- 3) Que mediante un Trigger incripte la contraseña 
+
+Delimiter $$
+Drop trigger if exists befInsClientes $$
+Create Trigger befInsClientes before insert ON Clientes
+FOR EACH ROW
+BEGIN
+	set NEW.contrasena = SHA2(NEW.contrasena, 256);
+END $$
+

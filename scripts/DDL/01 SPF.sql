@@ -48,7 +48,7 @@ delimiter $$
 Drop procedure if exists registrarCliente $$
 Create procedure registrarCliente (OUT unid_Cliente int, unnombre varchar(45), unapellido varchar(45), unemail varchar(45))
 begin
-    insert into Clientes( nombre, apellido, email, contrasena) values(unnombre, unapellido, unemail, SHA2(contrasena, 256));
+    insert into Clientes( nombre, apellido, email, contrasena) values(unnombre, unapellido, unemail, contrasena);
     SET unid_Cliente= LAST_INSERT_ID();
 end $$
 
@@ -84,3 +84,16 @@ AGAINST (cadena_busqueda IN NATURAL LANGUAGE MODE)
     or Match (A.nombre)
         AGAINST (cadena_busqueda IN NATURAL LANGUAGE MODE);
 end $$
+
+
+-- 5) En base a un email y contraseña devuelva un cliente si lo encontro y null si no lo encontro
+
+Delimiter $$
+DROP PROCEDURE IF EXISTS ClientesPoremailcontrasena $$
+CREATE PROCEDURE ClientesPoremailcontrasena (unemail VARCHAR(45), uncontrasena VARCHAR(45))
+BEGIN
+    SELECT  id_cliente, nombre, apellido, email
+    FROM    Clientes
+    WHERE   email = unemail
+    AND     contrasena = SHA2(uncontrasena, 256);
+END $$

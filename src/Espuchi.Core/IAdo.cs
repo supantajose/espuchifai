@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Espuchi.Core;
 
 public interface IAdo
@@ -14,5 +16,6 @@ public interface IAdo
 
     public void AltaCliente(Clientes cliente);
     public List<Clientes> ObtenerClientes();
+    public Clientes? ClienteporContrasena (string email , string contrasena);
 }
 
