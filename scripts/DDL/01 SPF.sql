@@ -84,17 +84,3 @@ AGAINST (cadena_busqueda IN NATURAL LANGUAGE MODE)
     or Match (A.nombre)
         AGAINST (cadena_busqueda IN NATURAL LANGUAGE MODE);
 end $$
-DELIMITER ;
-SELECT 'Creando Usuarios y Permisos' AS 'Estado';
-DROP USER IF EXISTS 'test'@'localhost';
-CREATE USER 'test'@'localhost' IDENTIFIED BY 'T12-test';
-GRANT SELECT ON 5to_Espuchifai.* TO 'test'@'localhost';
-GRANT UPDATE ON 5to_Espuchifai.* TO 'test'@'localhost';
-GRANT DELETE ON 5to_Espuchifai.* TO 'test'@'localhost';
-GRANT EXECUTE ON PROCEDURE altaBandas TO 'test'@'localhost';
-GRANT EXECUTE ON PROCEDURE altaAlbumes TO 'test'@'localhost';
-GRANT EXECUTE ON PROCEDURE altaCanciones TO 'test'@'localhost';
-GRANT EXECUTE ON PROCEDURE Reproducir TO 'test'@'localhost';
-GRANT EXECUTE ON PROCEDURE registrarCliente TO 'test'@'localhost';
-GRANT EXECUTE ON PROCEDURE Buscar TO 'test'@'localhost';
-FLUSH PRIVILEGES;

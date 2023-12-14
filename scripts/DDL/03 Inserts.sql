@@ -1,6 +1,6 @@
 -- Active: 1699473969193@@localhost@3306@5to_Espuchifai
 DELIMITER ;
-USE 5to_espuchifai;
+USE 5to_Espuchifai;
 SELECT 'Inserts' Estado ;
 INSERT into Clientes(nombre, apellido, email, contrasena)
 		values("Vanina", "Condorpocco","vanyabrilconblas@gmail.com",'root');

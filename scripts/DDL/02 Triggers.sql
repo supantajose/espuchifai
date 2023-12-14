@@ -1,7 +1,8 @@
 -- Active: 1699473969193@@localhost@3306@5to_Espuchifai
 -- 1) Cada vez que se inserta una reproducción, se incrementa el contador de reproducciones de la canción en uno.
-Delimiter $$
-USE 5to_espuchifai $$
+
+USE 5to_Espuchifai $$
+
 SELECT 'Creando Triggers' Estado $$
 Delimiter $$
 Drop Trigger if exists IncrementarReproduccionesCancion $$
@@ -15,6 +16,7 @@ END $$
 
 
 -- 2) Cada vez que se actualiza el contador de la canción en N reproducciones, se incrementa el contador del álbum también en N.
+
 Delimiter $$
 Drop Trigger if exists ReproduccionesAlbum $$
 
