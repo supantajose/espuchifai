@@ -17,11 +17,11 @@ END $$
 -- 2) Cada vez que se actualiza el contador de la canción en N reproducciones, se incrementa el contador del álbum también en N.
 Delimiter $$
 Drop Trigger if exists ReproduccionesAlbum $$
-<<<<<<< HEAD
-Create Trigger ReproduccionesAlbum after update on Canciones 
-=======
+
+Create Trigger ReproduccionesAlbum after update on Canciones $$
+
 Create Trigger ReproduccionesAlbum after update on Canciones
->>>>>>> 1dddfacfb21d56a644f4030b319abe66b06c4b0a
+
 For each row
 Begin
 	if (new.Reproduccion > old.Reproduccion)then
