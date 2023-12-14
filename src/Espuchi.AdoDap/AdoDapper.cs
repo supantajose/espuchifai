@@ -29,7 +29,10 @@ public class AdoDapper : IAdo
     = @"SELECT id_banda, nombre, anio
         FROM Bandas";
     public List<Banda> ObtenerBandas()
-        => _conexion.Query<Banda>(_queryBanda).ToList();
+    {
+        return _conexion.Query<Banda>(_queryBanda).ToList();
+    }
+        
 
     #endregion
     #region Canciones
@@ -39,16 +42,16 @@ public class AdoDapper : IAdo
         parametros.Add("@unidcancion", direction: ParameterDirection.Output);
         parametros.Add("@unnombre", canciones.Nombre);
         parametros.Add("@unnumero", canciones.numero);
-        parametros.Add("@unid_album", canciones.Albumes. id_album);
+        parametros.Add("@unid_album", canciones.Albumes.id_album);
         parametros.Add("@unReproduccion", canciones.Reproduccion);
-        _conexion.Execute("@altaCanciones", parametros, commandType: CommandType.StoredProcedure);
+        _conexion.Execute("altaCanciones", parametros, commandType: CommandType.StoredProcedure);
 
         canciones.idcancion = parametros.Get<int>("@unidcancion");
     
     }
 
     private static readonly string _queryCanciones
-    = @"SELECT idcancion, nombre
+    = @"SELECT idcancion, Albumes.nombre
             FROM Canciones
             JOIN Albumes USING(id_album)";
     public List<Canciones> ObtenerCanciones()
@@ -64,7 +67,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unid_album", direction: ParameterDirection.Output);
         parametros.Add("@unnombre", albumes.Nombre);
         parametros.Add("@unlanzamiento", albumes.Lanzamiento);
-        parametros.Add("@unid_banda", albumes.Banda. id_banda);
+        parametros.Add("@unid_banda", albumes.Banda.id_banda);
         parametros.Add("@unReproduccion", albumes.Reproduccion);
 
         _conexion.Execute("altaAlbumes", parametros, commandType: CommandType.StoredProcedure);
@@ -73,7 +76,7 @@ public class AdoDapper : IAdo
     }
 
     private static readonly string _queryAlbumes
-    = @"SELECT id_album, nombre
+    = @"SELECT *
         FROM Albumes
         JOIN Bandas USING (id_banda)";
     public List<Albumes> ObtenerAlbumes()
@@ -92,7 +95,6 @@ public class AdoDapper : IAdo
         parametros.Add("@unapellido", cliente.Apellido);
         parametros.Add("@unemail", cliente.email);
         parametros.Add("@unacantrasena",cliente.contrasena);
-        //falta contraseña preguntar como hacerlo en alta
 
         _conexion.Execute("registrarCliente", parametros, commandType: CommandType.StoredProcedure);
         cliente.id_cliente = parametros.Get<int>("@unid_Cliente");

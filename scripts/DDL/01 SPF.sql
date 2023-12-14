@@ -3,7 +3,7 @@
 delimiter $$
 SELECT 'Creando SPs' Estado $$
 Drop procedure if exists altaBandas $$
-Create procedure altaBandas (OUT unid_banda int, unnombre varchar(45), unanio year)
+Create procedure altaBandas (OUT unid_banda int, unnombre varchar(45), unanio date)
 begin
     insert into Bandas ( nombre, anio)
         values(unnombre, unanio );
@@ -14,7 +14,7 @@ end $$
 
 delimiter $$
 Drop procedure if exists altaAlbumes $$
-Create procedure altaAlbumes (OUT unid_album int, unnombre varchar(45), unlanzamiento date, unid_banda int, unReproduccion int)
+Create procedure altaAlbumes (OUT unid_album int, unnombre varchar(45), unlanzamiento datetime, unid_banda int, unReproduccion int)
 begin
     insert into Albumes (nombre, lanzamiento, id_banda, Reproduccion)
         values(unnombre, unlanzamiento, unid_banda, unReproduccion);
@@ -48,7 +48,7 @@ delimiter $$
 Drop procedure if exists registrarCliente $$
 Create procedure registrarCliente (OUT unid_Cliente int, unnombre varchar(45), unapellido varchar(45), unemail varchar(45))
 begin
-    insert into registrarCliente( nombre, apellido, email, contrasena) values(unnombre, unapellido, unemail, SHA2(contrasena, 256));
+    insert into Clientes( nombre, apellido, email, contrasena) values(unnombre, unapellido, unemail, SHA2(contrasena, 256));
     SET unid_Cliente= LAST_INSERT_ID();
 end $$
 

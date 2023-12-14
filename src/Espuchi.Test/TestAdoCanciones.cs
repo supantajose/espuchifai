@@ -8,14 +8,16 @@ public class TestAdoCanciones : TestAdo
     [Fact]
     public void altaCanciones()
     {
-        var bad  = Ado.ObtenerAlbumes().FirstOrDefault(p=>p.Nombre == "bad");
-        Assert.NotNull(bad);
+        Ado.ObtenerAlbumes();
+        var Drako= Ado.ObtenerAlbumes().FirstOrDefault(a=>a.Nombre == "Drako");
+        Assert.NotNull(Drako);
 
         var newCancion = new Canciones()
         {
-            Nombre = "Te bote",
+            Nombre = "The Truth Untold",
             numero= 1,
-            Albumes = bad,
+            Albumes = Drako,
+            Reproduccion=1,
             Reproducciones = new List<Reproducciones>()
         };
 

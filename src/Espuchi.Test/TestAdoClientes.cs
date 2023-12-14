@@ -14,7 +14,7 @@ public class TestAdoClientes : TestAdo
             Apellido = "Terrile",
             email = "Puma.Terrile@gmail.com",
             contrasena = "gustavocerati",
-            Reproducciones = new List<Reproducciones>()
+            
         };
 
         Ado.AltaCliente(newClientes);
