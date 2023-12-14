@@ -1,5 +1,4 @@
 -- Active: 1699473969193@@localhost@3306@5to_Espuchifai
-
 DROP DATABASE IF EXISTS 5to_Espuchifai;
 SELECT 'Creando BD' Estado;
 CREATE DATABASE 5to_Espuchifai;
