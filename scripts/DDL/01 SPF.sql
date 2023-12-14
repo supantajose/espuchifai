@@ -48,7 +48,7 @@ delimiter $$
 Drop procedure if exists registrarCliente $$
 Create procedure registrarCliente (OUT unid_Cliente int, unnombre varchar(45), unapellido varchar(45), unemail varchar(45))
 begin
-    insert into registrarCliente( nombre, apellido, email, contrasena) values(unnombre, unapellido, unemail, SHA2(contrasena, 256));
+    insert into Clientes( nombre, apellido, email, contrasena) values(unnombre, unapellido, unemail, SHA2(contrasena, 256));
     SET unid_Cliente= LAST_INSERT_ID();
 end $$
 
@@ -84,3 +84,17 @@ AGAINST (cadena_busqueda IN NATURAL LANGUAGE MODE)
     or Match (A.nombre)
         AGAINST (cadena_busqueda IN NATURAL LANGUAGE MODE);
 end $$
+DELIMITER ;
+SELECT 'Creando Usuarios y Permisos' AS 'Estado';
+DROP USER IF EXISTS 'test'@'localhost';
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'T12-test';
+GRANT SELECT ON 5to_Espuchifai.* TO 'test'@'localhost';
+GRANT UPDATE ON 5to_Espuchifai.* TO 'test'@'localhost';
+GRANT DELETE ON 5to_Espuchifai.* TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altaBandas TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altaAlbumes TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altaCanciones TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE Reproducir TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE registrarCliente TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE Buscar TO 'test'@'localhost';
+FLUSH PRIVILEGES;

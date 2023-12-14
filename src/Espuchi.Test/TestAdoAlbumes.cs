@@ -14,7 +14,7 @@ public class TestAdoAlbumes : TestAdo
         
         var newAlbumes = new Albumes()
         {
-            Nombre=  "Bad",
+            Nombre=  "Exclusive",
             Lanzamiento= new DateTime(2022, 09, 4),
             Banda= Drako,
             Reproduccion = 1,

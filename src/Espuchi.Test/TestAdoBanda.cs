@@ -10,7 +10,7 @@ public class TestEspuchi : TestAdo
     {
         var newBandas = new Banda()
         {
-            Nombre = "Drako",
+            Nombre = "Barbie",
             anio = new DateTime (2022, 02, 23)
 
         };

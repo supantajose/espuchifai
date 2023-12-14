@@ -15,7 +15,7 @@ CREATE TABLE Bandas
 CREATE TABLE Albumes(
 id_album int not null AUTO_INCREMENT,
 nombre varchar(45) not null,
-lazamiento datetime not null,
+lanzamiento datetime not null,
 id_banda int not null,
 Reproduccion int not null,
 FULLTEXT (nombre),
@@ -36,7 +36,7 @@ CONSTRAINT FK_Canciones FOREIGN KEY (id_album)
 REFERENCES Albumes (id_album)
 );
 CREATE TABLE Clientes(
-id_cliente int not null,
+id_cliente int not null AUTO_INCREMENT,
 nombre varchar(45) not null,
 apellido varchar(45) not null,
 email varchar (45) not null,
