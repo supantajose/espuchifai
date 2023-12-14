@@ -19,10 +19,7 @@ END $$
 
 Delimiter $$
 Drop Trigger if exists ReproduccionesAlbum $$
-
-Create Trigger ReproduccionesAlbum after update on Canciones $$
-
-Create Trigger ReproduccionesAlbum after update on Canciones
+Create Trigger ReproduccionesAlbum after update on Canciones 
 
 For each row
 Begin
