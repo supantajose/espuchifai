@@ -8,11 +8,7 @@ Drop Trigger if exists IncrementarReproduccionesCancion $$
 Create Trigger IncrementarReproduccionesCancion after Insert on Reproducciones
 For each row
 Begin
-<<<<<<< HEAD
 	update Canciones
-=======
-	update canciones
->>>>>>> 1dddfacfb21d56a644f4030b319abe66b06c4b0a
 	set Reproduccion = Reproduccion + 1
 	where idcancion = new.idcancion;
 END $$
